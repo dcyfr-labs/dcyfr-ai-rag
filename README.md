@@ -32,7 +32,7 @@ const store = new InMemoryVectorStore();
 
 | Package | Purpose | Type |
 |---------|---------|------|
-| [@dcyfr/ai](../dcyfr-ai) | Core AI framework | npm package |
+| [@dcyfr/ai](../dcyfr-ai) | Core AI harness | npm package |
 | [@dcyfr/ai-agents](../dcyfr-ai-agents) | Autonomous agents | Template |
 | [@dcyfr/ai-chatbot](../dcyfr-ai-chatbot) | Chatbot template | Template |
 | [dcyfr-labs](../dcyfr-labs) | Production Next.js app | Application |
