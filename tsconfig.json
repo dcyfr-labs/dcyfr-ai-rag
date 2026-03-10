@@ -11,6 +11,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "composite": false,
     "strict": true,
     "noUnusedLocals": true,
