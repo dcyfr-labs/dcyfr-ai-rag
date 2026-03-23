@@ -10,6 +10,15 @@ Build production-ready RAG systems with document loading, embedding, vector stor
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7+-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## About DCYFR
+
+`@dcyfr/ai-rag` is maintained by **DCYFR Labs** as part of the DCYFR AI tooling portfolio.
+
+- **DCYFR** is a registered trademark of DCYFR Labs.
+- Primary domain: [www.dcyfr.ai](https://www.dcyfr.ai)
+- Trademark guidance: [../TRADEMARK.md](../TRADEMARK.md)
+- Licensing details: [LICENSE](./LICENSE)
+
 ---
 
 - [Document Conversion](#-document-conversion-markitdown)

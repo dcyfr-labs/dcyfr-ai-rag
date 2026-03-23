@@ -2,6 +2,20 @@
 
 Thank you for your interest in contributing to the DCYFR RAG framework!
 
+## Licensing & Contributions
+
+By contributing to `@dcyfr/ai-rag`, you agree that:
+
+- Your contributions will be licensed under the project's MIT License
+- You have the right to submit the contribution under this license
+- You grant DCYFR Labs perpetual rights to use, modify, and distribute your contribution
+
+### Trademark
+
+Do not use "DCYFR" trademarks in ways that imply endorsement without permission. See [../TRADEMARK.md](../TRADEMARK.md) for usage guidelines.
+
+**Questions?** Contact [licensing@dcyfr.ai](mailto:licensing@dcyfr.ai)
+
 ## Development Setup
 
 ```bash
@@ -55,14 +69,17 @@ dcyfr-ai-rag/
 Example:
 
 ```typescript
-it('should chunk documents with overlap', async () => {
+it("should chunk documents with overlap", async () => {
   // Arrange
   const loader = new TextLoader();
-  const content = 'a'.repeat(2000);
-  
+  const content = "a".repeat(2000);
+
   // Act
-  const docs = await loader.load('./test.txt', { chunkSize: 1000, overlap: 200 });
-  
+  const docs = await loader.load("./test.txt", {
+    chunkSize: 1000,
+    overlap: 200,
+  });
+
   // Assert
   expect(docs.length).toBeGreaterThan(1);
   expect(docs[0].content.length).toBeLessThanOrEqual(1000);
@@ -91,6 +108,7 @@ it('should chunk documents with overlap', async () => {
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation
@@ -153,14 +171,14 @@ Closes #42
 
 - **No hardcoded secrets**: Use environment variables
 - **Validate inputs**: Check all user inputs
--  **Sanitize outputs**: Clean any user-generated content
+- **Sanitize outputs**: Clean any user-generated content
 - **Dependencies**: Keep dependencies up-to-date
 
 ## Questions?
 
 - **GitHub Discussions**: Ask questions, share ideas
 - **Issues**: Report bugs, request features
-- **Email**: hello@dcyfr.ai
+- **Email**: [hello@dcyfr.ai](mailto:hello@dcyfr.ai)
 
 ---
 
