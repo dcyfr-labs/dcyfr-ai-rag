@@ -88,14 +88,24 @@ it("should chunk documents with overlap", async () => {
 
 ## Pull Request Process
 
+**Branch Naming Convention:**
+```bash
+# Format: <type>/DCYFR-<NUMBER>-<description>
+git checkout -b feat/DCYFR-123-add-new-feature
+git checkout -b fix/DCYFR-456-resolve-bug
+```
+
+**Types:** `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+
+**PR Workflow:**
 1. **Fork** the repository
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+2. **Create a feature branch** following naming convention above
 3. **Make your changes** with tests
 4. **Run tests**: `npm run test:run`
 5. **Lint code**: `npm run lint`
-6. **Commit**: Use conventional commits (`feat:`, `fix:`, `docs:`, etc.)
-7. **Push**: `git push origin feature/amazing-feature`
-8. **Open a Pull Request** with a clear description
+6. **Commit**: Use conventional commits with `DCYFR-<NUMBER>` reference
+7. **Push**: `git push origin <your-branch>`
+8. **Open a Pull Request** with title: `[DCYFR-<NUMBER>] Brief description`
 
 ## Commit Message Format
 
