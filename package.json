@@ -67,11 +67,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dcyfr/dcyfr-ai-rag.git"
+    "url": "https://github.com/dcyfr-labs/dcyfr-ai-rag.git"
   },
-  "homepage": "https://github.com/dcyfr/dcyfr-ai-rag#readme",
+  "homepage": "https://github.com/dcyfr-labs/dcyfr-ai-rag#readme",
   "bugs": {
-    "url": "https://github.com/dcyfr/dcyfr-ai-rag/issues"
+    "url": "https://github.com/dcyfr-labs/dcyfr-ai-rag/issues"
   },
   "publishConfig": {
     "access": "public"
