@@ -29,8 +29,19 @@ Build production-ready RAG systems with document loading, embedding, vector stor
 
 ---
 
-- [Document Conversion](#-document-conversion-markitdown)
-- **Document Conversion** - Convert 15+ file formats (PDF, DOCX, PPTX, XLSX, images, etc.) to Markdown via MarkItDown Python library
+## ⚡ 30-Second Quick Start
+
+```bash
+# Install package
+npm install @dcyfr/ai-rag
+
+# Basic usage
+import { TextLoader, InMemoryVectorStore } from '@dcyfr/ai-rag';
+
+const loader = new TextLoader();
+const store = new InMemoryVectorStore();
+# ✅ RAG system ready for document ingestion
+```
 
 ---
 
@@ -126,20 +137,6 @@ const result = await convertToMarkdown("/path/to/presentation.pptx", {
 // Requires environment variables:
 // OPENAI_API_KEY=sk-...
 // ANTHROPIC_API_KEY=sk-ant-...
-```
-
-## ⚡ 30-Second Quick Start
-
-```bash
-# Install package
-npm install @dcyfr/ai-rag
-
-# Basic usage
-import { TextLoader, InMemoryVectorStore } from '@dcyfr/ai-rag';
-
-const loader = new TextLoader();
-const store = new InMemoryVectorStore();
-# ✅ RAG system ready for document ingestion
 ```
 
 ---
