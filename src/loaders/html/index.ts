@@ -7,6 +7,7 @@ import type { Document, DocumentLoader, LoaderConfig } from '../../types/index.j
 import { promises as fs } from 'node:fs';
 import { basename } from 'node:path';
 import { Buffer } from 'node:buffer';
+import { parse } from 'node-html-parser';
 
 /**
  * Load HTML documents
@@ -19,14 +20,19 @@ export class HTMLLoader implements DocumentLoader {
       const content = await fs.readFile(source, 'utf-8');
       const stats = await fs.stat(source);
 
-      // Extract title from <title> tag if present
-      const titleMatch = content.match(/<title>(.*?)<\/title>/i);
-      const title = titleMatch ? titleMatch[1] : basename(source);
+      // Parse once — used for both title extraction and text extraction.
+      const root = parse(content, {
+        comment: false,
+        blockTextElements: { script: false, style: false },
+      });
+
+      const titleNode = root.querySelector('title');
+      const title = titleNode?.text?.trim() || basename(source);
 
       // Extract text content
-      const textContent = config?.preserveFormatting 
-        ? content 
-        : this.extractText(content);
+      const textContent = config?.preserveFormatting
+        ? content
+        : this.extractText(root);
 
       const document: Document = {
         id: this.generateId(source),
@@ -53,29 +59,19 @@ export class HTMLLoader implements DocumentLoader {
   }
 
   /**
-   * Extract text content from HTML
-   * This is a simple implementation - for production use a proper HTML parser
+   * Extract text content from HTML using a proper parser.
+   *
+   * Replaces a regex-based sanitizer that triggered CodeQL findings
+   * (js/bad-tag-filter, js/double-escaping, js/incomplete-multi-character-sanitization).
+   * The parser handles script/style removal, entity decoding, and nested
+   * tag edge cases that regex can't safely cover.
    */
-  private extractText(html: string): string {
-    return html
-      // Remove script and style tags
-      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
-      // Remove HTML comments
-      .replace(/<!--[\s\S]*?-->/g, '')
-      // Remove HTML tags
-      .replace(/<[^>]+>/g, ' ')
-      // Decode HTML entities (basic)
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&amp;/g, '&')
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
-      // Clean up whitespace
-      .replace(/\s+/g, ' ')
-      .replace(/\n{3,}/g, '\n\n')
-      .trim();
+  private extractText(root: ReturnType<typeof parse>): string {
+    // Strip script + style nodes before reading text.
+    root.querySelectorAll('script, style').forEach((node) => node.remove());
+
+    // `.text` returns innerText with HTML entities already decoded by the parser.
+    return root.text.replace(/\s+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   /**
