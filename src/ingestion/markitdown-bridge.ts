@@ -76,9 +76,9 @@ function detectFormat(filePath: string): SupportedFormat {
  */
 async function createTempDir(): Promise<string> {
   try {
-    const tempDir = join(tmpdir(), `markitdown-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`);
-    await fs.mkdir(tempDir, { recursive: true });
-    return tempDir;
+    // mkdtemp gets kernel-grade randomness and fails instead of reusing a
+    // pre-existing (potentially attacker-created) directory.
+    return await fs.mkdtemp(join(tmpdir(), 'markitdown-'));
   } catch (error) {
     throw new ConversionError(
       ConversionErrorType.TEMP_DIR_ERROR,
