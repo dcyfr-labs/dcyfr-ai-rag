@@ -1,3 +1,5 @@
+# Auto-merge: thin caller -> dcyfr-labs/.github reusable; native auto-merge gated
+# on the 'main protection' ruleset. Patch/minor only; majors stay manual.
 version: 2
 updates:
   - package-ecosystem: "npm"
