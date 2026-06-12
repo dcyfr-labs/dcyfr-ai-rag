@@ -21,6 +21,7 @@ vi.mock('node:fs', () => ({
   promises: {
     stat: vi.fn(),
     mkdir: vi.fn(),
+    mkdtemp: vi.fn(),
     rm: vi.fn(),
   },
 }));
@@ -43,7 +44,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024 * 100, // 100 KB
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Mock successful subprocess
@@ -81,7 +82,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024 * 100,
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Mock hanging subprocess
@@ -135,7 +136,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024 * 100,
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Mock subprocess that crashes
@@ -166,7 +167,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024 * 100,
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Mock successful subprocess
@@ -186,8 +187,8 @@ describe('MarkItDown Bridge - Unit Tests', () => {
 
       await conversionPromise;
 
-      // Verify mkdir was called (temp dir created)
-      expect(fs.promises.mkdir).toHaveBeenCalled();
+      // Verify the temp conversion workspace was created
+      expect(fs.promises.mkdtemp).toHaveBeenCalled();
 
       // Verify rm was called (temp dir cleaned up)
       expect(fs.promises.rm).toHaveBeenCalled();
@@ -205,7 +206,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024 * 100,
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Mock failing subprocess
@@ -272,7 +273,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         size: 1024,
       } as any);
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       // Track concurrent conversions
@@ -321,7 +322,7 @@ describe('MarkItDown Bridge - Unit Tests', () => {
         .mockResolvedValueOnce({ isFile: () => true, size: 1024 } as any)
         .mockRejectedValueOnce(new Error('File not found'));
 
-      vi.mocked(fs.promises.mkdir).mockResolvedValue(undefined);
+      vi.mocked(fs.promises.mkdtemp).mockResolvedValue('/tmp/markitdown-test');
       vi.mocked(fs.promises.rm).mockResolvedValue(undefined);
 
       let callCount = 0;
