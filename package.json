@@ -80,6 +80,9 @@
     "node-html-parser": "^7.1.0",
     "zod": "^4.3.6"
   },
+  "overrides": {
+    "js-yaml": "^4.2.0"
+  },
   "peerDependencies": {
     "@dcyfr/ai": "^3.0.1",
     "chromadb": "^1.8.0"
