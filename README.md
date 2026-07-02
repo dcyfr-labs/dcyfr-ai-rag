@@ -8,7 +8,7 @@
   last_validated: 2026-03-29
 -->
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dcyfr/dcyfr-ai-rag)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dcyfr-labs/dcyfr-ai-rag)
 
 > **RAG (Retrieval-Augmented Generation) framework for Node.js and TypeScript**
 
