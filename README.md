@@ -5,7 +5,7 @@
   status: active
   name: dcyfr-ai-rag
   description: RAG (Retrieval-Augmented Generation) system template - DCYFR AI starter
-  last_validated: 2026-03-29
+  last_validated: 2026-07-11
 -->
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dcyfr-labs/dcyfr-ai-rag)
@@ -15,7 +15,8 @@
 Build production-ready RAG systems with document loading, embedding, vector stores, and semantic search.
 
 [![npm version](https://img.shields.io/npm/v/@dcyfr/ai-rag.svg)](https://www.npmjs.com/package/@dcyfr/ai-rag)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7+-blue.svg)](https://www.typescriptlang.org/)
+[![CI](https://github.com/dcyfr-labs/dcyfr-ai-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/dcyfr-labs/dcyfr-ai-rag/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## About DCYFR
@@ -24,8 +25,8 @@ Build production-ready RAG systems with document loading, embedding, vector stor
 
 - **DCYFR** is a registered trademark of DCYFR Labs.
 - Primary domain: [www.dcyfr.ai](https://www.dcyfr.ai)
-- Trademark guidance: [../TRADEMARK.md](../TRADEMARK.md)
 - Licensing details: [LICENSE](./LICENSE)
+- Security policy: [SECURITY.md](./SECURITY.md)
 
 ---
 
@@ -50,7 +51,7 @@ const store = new InMemoryVectorStore();
 Convert diverse document formats to LLM-optimized Markdown:
 
 ```typescript
-import { convertToMarkdown, convertBatch } from "@dcyfr/ai-rag/ingestion";
+import { convertToMarkdown, convertBatch } from "@dcyfr/ai-rag";
 
 // Single document conversion
 const result = await convertToMarkdown("/path/to/document.pdf", {
@@ -86,12 +87,11 @@ results.forEach((r, i) => {
 **Installation:**
 
 ```bash
-# Python environment required (workspace already configured)
-pip install markitdown>=0.1.5
-
-# Or use workspace .venv (pre-configured)
-source /path/to/workspace/.venv/bin/activate
+# Requires a Python 3 environment with the MarkItDown package
+pip install 'markitdown>=0.1.5'
 ```
+
+Verify availability at runtime with `checkMarkItDownInstalled()` (exported from the package root).
 
 **Performance:**
 
@@ -102,7 +102,7 @@ source /path/to/workspace/.venv/bin/activate
 **Error Handling:**
 
 ```typescript
-import { ConversionError, ConversionErrorType } from "@dcyfr/ai-rag/ingestion";
+import { ConversionError, ConversionErrorType } from "@dcyfr/ai-rag";
 
 try {
   const result = await convertToMarkdown("/path/to/file.pdf");
@@ -145,25 +145,24 @@ const result = await convertToMarkdown("/path/to/presentation.pptx", {
 
 | Package                                  | Purpose                | Type        |
 | ---------------------------------------- | ---------------------- | ----------- |
-| [@dcyfr/ai](../dcyfr-ai)                 | Core AI harness        | npm package |
-| [@dcyfr/ai-agents](../dcyfr-ai-agents)   | Autonomous agents      | Template    |
-| [@dcyfr/ai-chatbot](../dcyfr-ai-chatbot) | Chatbot template       | Template    |
-| [dcyfr-labs](../dcyfr-labs)              | Production Next.js app | Application |
+| [@dcyfr/ai](https://github.com/dcyfr-labs/dcyfr-ai)                 | Core AI harness        | npm package |
+| [@dcyfr/ai-agents](https://github.com/dcyfr-labs/dcyfr-ai-agents)   | Autonomous agents      | Template    |
+| [@dcyfr/ai-chatbot](https://github.com/dcyfr-labs/dcyfr-ai-chatbot) | Chatbot template       | Template    |
+| [dcyfr-labs](https://github.com/dcyfr-labs/dcyfr-labs)              | Production Next.js app | Application |
 
 ---
 
 ## ✨ Features
 
-- **📄 Document Loaders** - Load text, markdown, and HTML documents with intelligent chunking
-- **🔢 Embeddings** - Pluggable providers (OpenAI, Cohere, Anthropic, Ollama local)
-- **🗄️ Vector Stores** - In-memory + persistent (Chroma, Pinecone, Weaviate)
+- **📄 Document Loaders** - `TextLoader`, `MarkdownLoader`, `HTMLLoader` with configurable chunking
+- **📥 Document Conversion** - PDF/Office/image/audio → Markdown via the MarkItDown bridge (`convertToMarkdown`, `convertBatch`)
+- **🔢 Embeddings** - `SimpleEmbeddingGenerator` for dev/testing + a pluggable `EmbeddingGenerator` interface for real providers (OpenAI, Cohere, Ollama, …)
+- **🗄️ Vector Store** - `InMemoryVectorStore` (the only store shipped today); implement the `VectorStore` interface to plug in a persistent backend
 - **🔍 Semantic Retrieval** - Find relevant documents by meaning, not just keywords
-- **🎯 Metadata Filtering** - Complex filters (AND/OR, nested, temporal queries)
+- **🎯 Metadata Filtering** - Single-field filters with `eq/ne/gt/gte/lt/lte/in/nin` operators
 - **⚡ Batch Processing** - Efficient ingestion with progress tracking and error handling
-- **🔄 Hybrid Search** - Combine keyword (BM25) + semantic search for best results
 - **📊 Multiple Distance Metrics** - Cosine similarity, dot product, euclidean
-- **🚀 Production Ready** - Retry logic, monitoring hooks, comprehensive error handling
-- **📚 Complete Documentation** - 4 comprehensive guides + advanced examples
+- **📚 Complete Documentation** - 5 guides (`docs/`) + 6 runnable/type-checked examples (hybrid BM25+semantic search ships as an example; built-in support is on the Roadmap below)
 
 ---
 
@@ -173,15 +172,20 @@ const result = await convertToMarkdown("/path/to/presentation.pptx", {
 npm install @dcyfr/ai-rag
 ```
 
-### Optional Dependencies
+### Optional Peer Dependencies
+
+Declared in `package.json` (both optional):
 
 ```bash
-# For production embeddings (recommended)
-npm install openai  # or anthropic
+# Core AI harness integration
+npm install @dcyfr/ai        # ^3.0.1
 
-# For persistent vector storage
-npm install chromadb  # or pinecone-client or weaviate-client
+# For building a persistent vector store on Chroma
+npm install chromadb         # ^1.8.0 — note: no Chroma store ships in this package yet;
+                             # you implement the VectorStore interface against it
 ```
+
+For production embeddings, bring your own provider SDK (e.g. `npm install openai`) and implement `EmbeddingGenerator` (see [Production Setup](#-production-setup)).
 
 ---
 
@@ -238,14 +242,16 @@ Explore our detailed documentation covering all aspects of RAG development:
   - Similarity metrics explained
 
 - **[Vector Stores Guide](docs/VECTOR_STORES.md)** - Storage and retrieval optimization
-  - InMemoryVectorStore, ChromaVectorStore, PineconeVectorStore, WeaviateVectorStore
-  - Metadata filtering (AND/OR, nested queries)
-  - Performance optimization (batching, ANN search)
+  - InMemoryVectorStore (shipped) + integration patterns for external stores
+  - Metadata filtering
+  - Performance optimization
 
 - **[Pipelines Guide](docs/PIPELINES.md)** - End-to-end RAG workflows
   - Ingestion pipeline (load → chunk → embed → store)
   - Retrieval pipeline (query → search → assemble context)
   - Production patterns (hybrid search, re-ranking, error handling)
+
+- **[API Reference](docs/API.md)** - Full API documentation for all exports
 
 ### Quick Reference
 
@@ -381,19 +387,17 @@ const similar = await pipeline.findSimilar("doc-id-123", { limit: 10 });
 
 ### Advanced Examples
 
-- **[Advanced RAG](examples/advanced-rag/)** - Production-ready workflow with:
-  - OpenAI embeddings for semantic search
-  - Chroma persistent vector store
-  - Metadata filtering with multiple criteria
+- **[Advanced RAG](examples/advanced-rag/)** - Production-shaped workflow (in-memory components with notes on swapping in real providers):
+  - Retry logic with exponential backoff
+  - Metadata filtering with multiple sequential queries
   - Progress tracking and error handling
-  - Question answering with context
+  - Question answering with retrieved context
 
-- **[Metadata Filtering](examples/metadata-filtering/)** - Complex query scenarios:
-  - AND/OR filter combinations
-  - Nested complex filters
+- **[Metadata Filtering](examples/metadata-filtering/)** - Query scenarios with the single-field `MetadataFilter`:
+  - All operators (`eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `in`, `nin`)
   - Temporal queries (date ranges)
-  - Tag-based search with arrays
-  - Multi-field filtering
+  - Tag-based search with the `in` operator
+  - Performance comparison (filtered vs unfiltered)
 
 - **[Hybrid Search](examples/hybrid-search/)** - Combine keyword + semantic:
   - BM25 keyword search implementation
@@ -404,15 +408,18 @@ const similar = await pipeline.findSimilar("doc-id-123", { limit: 10 });
 ### Running Examples
 
 ```bash
-# Basic examples
-npm run example:basic-rag
-npm run example:semantic-search
-npm run example:qa-system
+# Basic examples (runnable npm scripts)
+npm run example:basic     # examples/basic-rag
+npm run example:search    # examples/semantic-search
+npm run example:qa        # examples/qa-system
 
-# Advanced examples
-npm run example:advanced-rag
-npm run example:metadata-filtering
-npm run example:hybrid-search
+# Advanced examples: no run scripts — execute directly with tsx…
+npx tsx examples/advanced-rag/index.ts
+npx tsx examples/metadata-filtering/index.ts
+npx tsx examples/hybrid-search/index.ts
+
+# …or type-check all three at once
+npm run examples:check
 ```
 
 For a quick directory index and targeted type-check commands, see [`examples/README.md`](examples/README.md).
@@ -512,25 +519,18 @@ const result = await pipeline.query("search query", {
 });
 ```
 
-**Use metadata filtering to narrow search space:**
+**Use metadata filtering to narrow search space** (filters are single-field — for compound conditions run multiple sequential queries):
 
 ```typescript
 const result = await pipeline.query("search query", {
   limit: 5,
-  filter: {
-    operator: "and",
-    filters: [
-      { field: "category", operator: "eq", value: "technical" },
-      { field: "published", operator: "gte", value: "2024-01-01" },
-    ],
-  },
+  filter: { field: "category", operator: "eq", value: "technical" },
 });
 ```
 
 **For large collections (>100k documents):**
 
-- Use persistent vector stores (Chroma, Pinecone, Weaviate)
-- Enable Approximate Nearest Neighbor (ANN) search
+- Implement the `VectorStore` interface against a persistent backend with ANN indexing (e.g. Chroma via the optional `chromadb` peer)
 - Implement caching for frequent queries
 
 ---
@@ -600,14 +600,7 @@ const result = await pipeline.query("search query", {
 2. **For search:**
    - Reduce result limit: `{ limit: 5 }` instead of 50
    - Use metadata filters to narrow search space
-   - Enable ANN search for collections >100k:
-     ```typescript
-     const store = new InMemoryVectorStore({
-       useApproximateSearch: true,
-       approximationParams: { nprobe: 10, nlist: 100 },
-     });
-     ```
-   - Use persistent vector stores with indexing (Pinecone, Weaviate)
+   - `InMemoryVectorStore` does exact (brute-force) search — for collections >100k, implement the `VectorStore` interface against a persistent backend with ANN indexing
 
 ### Memory Issues
 
@@ -615,16 +608,9 @@ const result = await pipeline.query("search query", {
 
 **Solutions:**
 
-1. Use persistent vector stores instead of in-memory
-2. Set maxDocuments limit with LRU eviction:
-   ```typescript
-   const store = new InMemoryVectorStore({
-     maxDocuments: 100000,
-     evictionPolicy: "lru",
-   });
-   ```
+1. Use a persistent vector store instead of in-memory (`InMemoryVectorStore` holds every document in RAM with no eviction)
+2. Delete stale documents explicitly with `store.deleteDocuments(ids)` or `store.clear()`
 3. Process documents in smaller batches
-4. Use streaming loader for large files
 
 ---
 
@@ -637,11 +623,11 @@ npm install
 # Build
 npm run build
 
-# Test
+# Test (one-shot)
 npm run test:run
 
 # Watch mode
-npm run test:watch
+npm run test
 
 # Coverage
 npm run test:coverage
@@ -703,11 +689,13 @@ const result = await ingestion.ingest(files, {
 
 ---
 
-## �️ Roadmap
+## 🗺️ Roadmap
 
-### v1.1 (Planned)
+_v1.1 shipped the MarkItDown document-conversion integration (see [CHANGELOG.md](CHANGELOG.md))._
 
-- [ ] Additional vector stores (Qdrant, Milvus)
+### Planned
+
+- [ ] Persistent vector stores (Chroma, Qdrant, Milvus)
 - [ ] Streaming ingestion pipeline
 - [ ] Built-in caching layer
 - [ ] Query expansion and synonyms
@@ -729,11 +717,11 @@ const result = await ingestion.ingest(files, {
 - [ ] Real-time indexing
 - [ ] Auto-tuning (chunk size, thresholds)
 
-See our [GitHub Issues](https://github.com/dcyfr/ai-rag/issues) for feature requests and progress.
+See our [GitHub Issues](https://github.com/dcyfr-labs/dcyfr-ai-rag/issues) for feature requests and progress.
 
 ---
 
-## �📄 License
+## 📄 License
 
 MIT © [DCYFR](https://www.dcyfr.ai)
 
@@ -749,7 +737,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 - [Website](https://www.dcyfr.ai)
 - [Documentation](https://www.dcyfr.ai/docs/ai-rag)
-- [GitHub](https://github.com/dcyfr/ai-rag)
+- [GitHub](https://github.com/dcyfr-labs/dcyfr-ai-rag)
 - [npm](https://www.npmjs.com/package/@dcyfr/ai-rag)
 
 ---
