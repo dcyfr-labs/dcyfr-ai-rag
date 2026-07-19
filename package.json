@@ -77,7 +77,7 @@
     "access": "public"
   },
   "dependencies": {
-    "node-html-parser": "^8.0.2",
+    "node-html-parser": "^9.0.0",
     "zod": "^4.3.6"
   },
   "overrides": {
