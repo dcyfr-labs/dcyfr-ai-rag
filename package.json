@@ -99,7 +99,7 @@
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.0",
     "@types/node": "^26.0.0",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "^5.0.0",
     "eslint": "^10.1.0",
     "tsx": "^4.7.0",
     "typescript": "^6.0.2",
