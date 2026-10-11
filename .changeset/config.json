@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@4.0.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "dcyfr/dcyfr-ai-rag" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "dcyfr-labs/dcyfr-ai-rag" }],
   "commit": false,
   "fixed": [],
   "linked": [],

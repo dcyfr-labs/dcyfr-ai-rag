@@ -723,7 +723,7 @@ See our [GitHub Issues](https://github.com/dcyfr-labs/dcyfr-ai-rag/issues) for f
 
 ## 📄 License
 
-MIT © [DCYFR](https://www.dcyfr.ai)
+MIT © [DCYFR Labs](https://www.dcyfr.ai)
 
 ---
 
