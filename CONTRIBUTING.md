@@ -20,8 +20,8 @@ Do not use "DCYFR" trademarks in ways that imply endorsement without permission.
 
 ```bash
 # Clone repository
-git clone https://github.com/dcyfr/ai-rag.git
-cd ai-rag
+git clone https://github.com/dcyfr-labs/dcyfr-ai-rag.git
+cd dcyfr-ai-rag
 
 # Install dependencies
 npm install

@@ -1255,9 +1255,9 @@ async function legacyEmbed(texts: string[]): Promise<number[][]> {
 
 ## Support
 
-- **Documentation:** https://github.com/dcyfr/dcyfr-ai-rag/tree/main/docs
-- **Issues:** https://github.com/dcyfr/dcyfr-ai-rag/issues
-- **Discussions:** https://github.com/dcyfr/dcyfr-ai-rag/discussions
+- **Documentation:** https://github.com/dcyfr-labs/dcyfr-ai-rag/tree/main/docs
+- **Issues:** https://github.com/dcyfr-labs/dcyfr-ai-rag/issues
+- **Discussions:** https://github.com/dcyfr-labs/dcyfr-ai-rag/discussions
 - **Email:** hello@dcyfr.ai
 
 ---

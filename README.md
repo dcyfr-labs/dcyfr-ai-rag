@@ -23,7 +23,7 @@ Build production-ready RAG systems with document loading, embedding, vector stor
 
 `@dcyfr/ai-rag` is maintained by **DCYFR Labs** as part of the DCYFR AI tooling portfolio.
 
-- **DCYFR** is a trademark of DCYFR Labs.
+- **DCYFR** is a trademark of Drew Gowan.
 - Primary domain: [www.dcyfr.ai](https://www.dcyfr.ai)
 - Licensing details: [LICENSE](./LICENSE)
 - Security policy: [SECURITY.md](./SECURITY.md)
@@ -723,7 +723,7 @@ See our [GitHub Issues](https://github.com/dcyfr-labs/dcyfr-ai-rag/issues) for f
 
 ## 📄 License
 
-MIT © [DCYFR](https://www.dcyfr.ai)
+MIT © [DCYFR Labs](https://www.dcyfr.ai)
 
 ---
 

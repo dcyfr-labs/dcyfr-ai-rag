@@ -34,7 +34,7 @@ We take security seriously and appreciate responsible disclosure. If you discove
 
 ### 🔒 GitHub Security Advisories
 Use GitHub's private vulnerability reporting:
-https://github.com/dcyfr/dcyfr-ai-rag/security/advisories/new
+https://github.com/dcyfr-labs/dcyfr-ai-rag/security/advisories/new
 
 ---
 
@@ -374,7 +374,7 @@ Subscribe to security notifications:
 
 - **GitHub Watch:** Click "Watch" → "Custom" → "Security alerts only"
 - **npm Advisory:** https://www.npmjs.com/package/@dcyfr/ai-rag
-- **RSS Feed:** https://github.com/dcyfr/dcyfr-ai-rag/security/advisories.atom
+- **RSS Feed:** https://github.com/dcyfr-labs/dcyfr-ai-rag/security/advisories.atom
 - **Security Mailing List:** security-announce@dcyfr.ai (coming soon)
 
 ---
@@ -391,7 +391,7 @@ Subscribe to security notifications:
 
 ### Recognition
 We maintain a Security Hall of Fame for responsible disclosure (with permission):
-- https://github.com/dcyfr/dcyfr-ai-rag/blob/main/SECURITY_HALL_OF_FAME.md (coming soon)
+- https://github.com/dcyfr-labs/dcyfr-ai-rag/blob/main/SECURITY_HALL_OF_FAME.md (coming soon)
 
 ### Bounty Program
 We are planning a vulnerability reward program for critical findings (details TBD).
@@ -472,7 +472,7 @@ Our development process includes:
 ### General Security
 - [npm Security Best Practices](https://docs.npmjs.com/packages-and-modules/securing-your-code)
 - [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security/)
-- [DCYFR Organization Security Policy](https://github.com/dcyfr/.github/blob/main/SECURITY.md)
+- [DCYFR Organization Security Policy](https://github.com/dcyfr-labs/.github/blob/main/SECURITY.md)
 
 ---
 
