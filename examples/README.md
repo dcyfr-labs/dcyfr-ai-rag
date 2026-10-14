@@ -19,12 +19,12 @@ This directory contains runnable examples for `@dcyfr/ai-rag`.
 
 From package root:
 
-- `npm run example:basic-rag`
-- `npm run example:semantic-search`
-- `npm run example:qa-system`
-- `npm run example:metadata-filtering`
-- `npm run example:hybrid-search`
-- `npm run example:advanced-rag`
+- `npm run example:basic` (`basic-rag`)
+- `npm run example:search` (`semantic-search`)
+- `npm run example:qa` (`qa-system`)
+- `npx tsx examples/metadata-filtering/index.ts`
+- `npx tsx examples/hybrid-search/index.ts`
+- `npx tsx examples/advanced-rag/index.ts`
 
 ## Type-check examples
 

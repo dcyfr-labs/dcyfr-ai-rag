@@ -36,6 +36,10 @@ npm run test:run
 npm run test:watch
 ```
 
+## Code of Conduct
+
+Participation is governed by the [DCYFR Labs Code of Conduct](https://github.com/dcyfr-labs/.github/blob/main/CODE_OF_CONDUCT.md).
+
 ## Project Structure
 
 ```
