@@ -742,4 +742,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ---
 
-Built with ❤️ by the DCYFR team
+Built with ❤️ by DCYFR Labs

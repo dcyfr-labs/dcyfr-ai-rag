@@ -415,7 +415,7 @@ We are planning a vulnerability reward program for critical findings (details TB
 
 | Date | Type | Auditor | Results |
 |------|------|---------|---------|
-| TBD | Internal Security Review | DCYFR Security Team | Pending v1.0.0 release |
+| TBD | Internal Security Review | DCYFR Labs Security Team | Pending v1.0.0 release |
 | TBD | Dependency Audit | Automated (Dependabot) | Ongoing |
 | TBD | External Penetration Test | TBD | Planned for Q2 2026 |
 
