@@ -239,5 +239,5 @@ Before approving changes, verify:
 ---
 
 **Last Updated:** February 5, 2026  
-**Maintained By:** DCYFR AI Team
+**Maintained By:** DCYFR Labs AI Team
 
