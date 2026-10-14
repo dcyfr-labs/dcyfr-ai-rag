@@ -14,8 +14,8 @@ let markitdownReady = false;
 
 describe('MarkItDown Bridge - Integration Tests', () => {
   beforeAll(async () => {
-    // Ensure deterministic Python path in worktree environments
-    process.env.PYTHON_EXECUTABLE ??= '/Users/drew/DCYFR/code/dcyfr-workspace/.venv/bin/python';
+    // Resolve Python from PYTHON_EXECUTABLE, then PYTHON, then PATH (python3)
+    process.env.PYTHON_EXECUTABLE ??= process.env.PYTHON ?? 'python3';
 
     // Verify MarkItDown is installed before running integration tests
     markitdownReady = await checkMarkItDownInstalled();

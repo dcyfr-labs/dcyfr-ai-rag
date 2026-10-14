@@ -148,7 +148,7 @@ const result = await convertToMarkdown("/path/to/presentation.pptx", {
 | [@dcyfr/ai](https://github.com/dcyfr-labs/dcyfr-ai)                 | Core AI harness        | npm package |
 | [@dcyfr/ai-agents](https://github.com/dcyfr-labs/dcyfr-ai-agents)   | Autonomous agents      | Template    |
 | [@dcyfr/ai-chatbot](https://github.com/dcyfr-labs/dcyfr-ai-chatbot) | Chatbot template       | Template    |
-| [dcyfr-labs](https://github.com/dcyfr-labs/dcyfr-labs)              | Production Next.js app | Application |
+| [dcyfr.ai](https://www.dcyfr.ai)                                    | Production Next.js app | Application |
 
 ---
 

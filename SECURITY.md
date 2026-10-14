@@ -448,7 +448,7 @@ Our development process includes:
 ## Contact
 
 **General Security:** security@dcyfr.ai  
-**Package Maintainer:** @dcyfr-team  
+**Security Advisories:** https://github.com/dcyfr-labs/dcyfr-ai-rag/security/advisories/new  
 **Emergency Contact:** For critical vulnerabilities affecting production systems, include "URGENT" in subject line  
 **PGP Key:** https://keybase.io/dcyfr (coming soon)
 
