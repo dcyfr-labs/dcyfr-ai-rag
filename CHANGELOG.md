@@ -186,7 +186,7 @@
     - [Document Loaders](docs/DOCUMENT_LOADERS.md)
     - [Embeddings](docs/EMBEDDINGS.md)
     - [Vector Stores](docs/VECTOR_STORES.md)
-    - [Production Deployment](docs/PRODUCTION.md)
+    - Production Deployment
   - **GitHub**: https://github.com/dcyfr/ai-rag
   - **npm**: https://www.npmjs.com/package/@dcyfr/ai-rag
 
@@ -200,7 +200,7 @@
 
   **Migration from 0.2.x:** No code changes required. All 0.2.x APIs remain fully compatible.
 
-  **Next Steps:** See [ROADMAP.md](docs/roadmap/README.md) for planned v1.1.0 features.
+  **Next Steps:** See ROADMAP.md for planned v1.1.0 features.
 
 ## 0.2.0
 
