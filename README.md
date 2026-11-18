@@ -231,6 +231,8 @@ console.log(result.results); // Ranked document chunks with scores
 
 Explore our detailed documentation covering all aspects of RAG development:
 
+- **[Docs index](docs/README.md)** - All documentation by topic
+
 - **[Document Loaders Guide](docs/DOCUMENT_LOADERS.md)** - Complete guide to loading and chunking documents
   - TextLoader, MarkdownLoader, HTMLLoader
   - Chunking strategies (fixed-size, sentence-aware, paragraph-based, semantic)
