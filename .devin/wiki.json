@@ -2,11 +2,11 @@
   "repo_notes": [
     {
       "content": "The real source layout is src/{loaders,ingestion,stores,pipeline,types}. Earlier steering named src/embeddings/, src/vectordb/, src/retrieval/, src/chunking/ and src/indexing/ — none of those directories exist.",
-      "author": "rei-doc-specialist"
+      "author": "dcyfr-doc-specialist"
     },
     {
       "content": "docs/ already holds API, DOCUMENT_LOADERS, EMBEDDINGS, PIPELINES and VECTOR_STORES; the wiki should agree with them rather than restate them.",
-      "author": "rei-doc-specialist"
+      "author": "dcyfr-doc-specialist"
     }
   ],
   "pages": [
